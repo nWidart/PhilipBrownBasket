@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Session;
 use Modules\Ecommerce\Application\Basket\Basket;
 use Modules\Ecommerce\Domain\Repository\BasketRepository;
 use Money\Currency;
