@@ -1,0 +1,16 @@
+{
+  "name": "Product",
+  "alias": "product",
+  "description": "Product module",
+  "keywords": [],
+  "require": {},
+  "active": 1,
+  "priority": 1,
+  "providers": [
+    "Modules\\Product\\ProductServiceProvider"
+  ],
+  "aliases": {
+  },
+  "files": [
+  ]
+}
