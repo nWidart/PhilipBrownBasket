@@ -72,4 +72,10 @@ interface Basket
      * @return void
      */
     public function remove($sku);
+
+    /**
+     * Find the current basket
+     * @return \Modules\Ecommerce\Application\Basket\Basket
+     */
+    public function current();
 }

@@ -111,4 +111,13 @@ class PhilipBrownBasket implements Basket
 
         $this->basketRepository->persistBasket($this->basket);
     }
+
+    /**
+     * Find the current basket
+     * @return \Modules\Ecommerce\Application\Basket\Basket
+     */
+    public function current()
+    {
+        return $this->basketRepository->current();
+    }
 }
