@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Response;
 use Modules\Ecommerce\Application\Basket\Basket;
-use Modules\Ecommerce\Domain\Repository\BasketRepository;
 use Money\Currency;
 use Money\Money;
 use PhilipBrown\Basket\Product;
@@ -15,16 +14,10 @@ class BasketController extends Controller
      * @var Basket
      */
     private $basket;
-    /**
-     * @var BasketRepository
-     */
-    private $basketPersistance;
 
-    public function __construct(BasketRepository $basketPersistance)
+    public function __construct(Basket $basket)
     {
-        $newBasket = app('Modules\Ecommerce\Application\Basket\Basket');
-        $this->basketPersistance = $basketPersistance;
-        $this->basket = $this->basketPersistance->current() ?: $newBasket;
+        $this->basket = $basket;
     }
 
     /**
@@ -44,8 +37,6 @@ class BasketController extends Controller
         } else {
             $this->basket->add($sku, $request->get('name'), $price);
         }
-
-        $this->basketPersistance->persistBasket($this->basket);
 
         return Response::json([
             'productCount' => $this->basket->count(),
