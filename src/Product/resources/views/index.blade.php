@@ -1,5 +1,13 @@
 @extends('core::layouts.master')
 
+@section('styles')
+    <style>
+        .show {
+            display: inline !important;
+        }
+    </style>
+@stop
+
 @section('content')
     <div class="row">
         <div class="col-md-8">
@@ -24,6 +32,7 @@
                             <i class="fa fa-cart-plus"></i>
                             {{ array_key_exists($product->id, $basket->products()->toArray()) ? 'Remove from basket' : 'Add to basket' }}
                         </a>
+                        <span class="jsLoader hidden"><i class="fa fa-spinner fa-pulse"></i></span>
                         <span class="pull-right">
                             <a class="btn btn-xs tip wishlist-add" href="" title=""
                                data-original-title="Add to Wishlist">
@@ -52,7 +61,8 @@
                     removeProductFromBasketRoute: '{{ route('api.basket.remove') }}',
                     productCounterSelector: '.jsProductCounter',
                     addProductClass: 'btn-add',
-                    removeProductClass: 'btn-remove'
+                    removeProductClass: 'btn-remove',
+                    loaderSelector: '.jsLoader'
                 });
             });
         });

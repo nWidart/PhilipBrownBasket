@@ -12,7 +12,8 @@
             dataPrice: 'price',
             productCounterSelector: '.jsProductCounter',
             addProductClass: 'btn-add',
-            removeProductClass: 'btn-remove'
+            removeProductClass: 'btn-remove',
+            loaderSelector: '.jsLoader'
         };
 
     // The actual plugin constructor
@@ -34,6 +35,10 @@
             $(this.element).toggleClass('btn-add btn-remove');
             $(this.element).html('<i class="fa fa-cart-plus"></i> Remove from cart');
         },
+        toggleLoaderElement: function () {
+            var loader = $(this.element).siblings(this.settings.countLoaderSelector);
+            loader.toggleClass('show hidden');
+        },
         makeAddProductRequest: function () {
             var self = this;
             $.ajax({
@@ -45,6 +50,7 @@
                     'price': $(self.element).data(self.settings.dataPrice)
                 },
                 success: function (data) {
+                    self.toggleLoaderElement();
                     self.updateButtonClasses();
                     self.updateCounters(data.productCount)
                 }
@@ -59,8 +65,9 @@
                     'sku': $(self.element).data(self.settings.dataSku)
                 },
                 success: function (data) {
+                    self.toggleLoaderElement();
                     self.updateButtonClasses();
-                    self.updateCounters(data.productCount)
+                    self.updateCounters(data.productCount);
                 }
             });
         },
@@ -68,6 +75,7 @@
             var self = this;
             $(this.element).on('click', function (e) {
                 e.preventDefault();
+                self.toggleLoaderElement();
                 if ($(this).hasClass(self.settings.addProductClass)) {
                     self.makeAddProductRequest();
                 }
