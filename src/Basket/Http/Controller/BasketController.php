@@ -1,7 +1,7 @@
 <?php namespace Modules\Basket\Http\Controller;
 
 use Illuminate\Routing\Controller;
-use Modules\Ecommerce\Application\Basket\Basket;
+use Modules\Basket\Application\Basket\Basket;
 
 class BasketController extends Controller
 {

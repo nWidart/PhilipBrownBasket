@@ -1,16 +1,16 @@
-<?php namespace Modules\Ecommerce\Domain\Repository;
+<?php namespace Modules\Basket\Domain\Repository;
 
 interface BasketRepository
 {
     /**
-     * @param \Modules\Ecommerce\Application\Basket\Basket $basket
+     * @param \Modules\Basket\Application\Basket\Basket $basket
      * @return void
      */
     public function persistBasket($basket);
 
     /**
      * Find the current basket
-     * @return \Modules\Ecommerce\Application\Basket\Basket
+     * @return \Modules\Basket\Application\Basket\Basket
      */
     public function current();
 }

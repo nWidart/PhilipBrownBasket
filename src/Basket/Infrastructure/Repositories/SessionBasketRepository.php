@@ -1,7 +1,7 @@
-<?php namespace Modules\Ecommerce\Infrastructure\Repositories;
+<?php namespace Modules\Basket\Infrastructure\Repositories;
 
 use Illuminate\Session\SessionManager;
-use Modules\Ecommerce\Domain\Repository\BasketRepository;
+use Modules\Basket\Domain\Repository\BasketRepository;
 
 class SessionBasketRepository implements BasketRepository
 {
@@ -22,7 +22,7 @@ class SessionBasketRepository implements BasketRepository
 
     /**
      * Find the current basket
-     * @return \Modules\Ecommerce\Application\Basket\Basket
+     * @return \Modules\Basket\Application\Basket\Basket
      */
     public function current()
     {

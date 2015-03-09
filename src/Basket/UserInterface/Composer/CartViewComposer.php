@@ -1,7 +1,7 @@
-<?php namespace Modules\Ecommerce\UserInterface\Composer;
+<?php namespace Modules\Basket\UserInterface\Composer;
 
 use Illuminate\Contracts\View\View;
-use Modules\Ecommerce\Application\Basket\Basket;
+use Modules\Basket\Application\Basket\Basket;
 
 class CartViewComposer
 {

@@ -1,9 +1,9 @@
-<?php namespace Modules\Ecommerce\Http\Controller\Api;
+<?php namespace Modules\Basket\Http\Controller\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Response;
-use Modules\Ecommerce\Application\Basket\Basket;
+use Modules\Basket\Application\Basket\Basket;
 use Money\Currency;
 use Money\Money;
 use PhilipBrown\Basket\Product;

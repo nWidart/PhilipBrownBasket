@@ -1,13 +1,13 @@
 <?php namespace Modules\Product\Http\Controller;
 
 use Illuminate\Routing\Controller;
-use Modules\Ecommerce\Application\Basket\Basket;
+use Modules\Basket\Application\Basket\Basket;
 use Modules\Product\Domain\Entity\Product;
 
 class ProductController extends Controller
 {
     /**
-     * @var \Modules\Ecommerce\Application\Basket\Basket
+     * @var \Modules\Basket\Application\Basket\Basket
      */
     private $basket;
 

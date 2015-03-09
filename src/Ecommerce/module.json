@@ -7,12 +7,10 @@
   "active": 1,
   "priority": 1,
   "providers": [
-    "Modules\\Ecommerce\\EcommerceServiceProvider",
-    "Modules\\Ecommerce\\BasketServiceProvider"
+    "Modules\\Ecommerce\\EcommerceServiceProvider"
   ],
   "aliases": {
   },
   "files": [
-    "composers.php"
   ]
 }

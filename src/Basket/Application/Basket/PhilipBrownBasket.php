@@ -1,7 +1,7 @@
-<?php namespace Modules\Ecommerce\Application\Basket;
+<?php namespace Modules\Basket\Application\Basket;
 
 use Closure;
-use Modules\Ecommerce\Domain\Repository\BasketRepository;
+use Modules\Basket\Domain\Repository\BasketRepository;
 use Money\Currency;
 use Money\Money;
 use PhilipBrown\Basket\Basket as PhilipBrownBasketImplementation;
@@ -132,7 +132,7 @@ class PhilipBrownBasket implements Basket
 
     /**
      * Find the current basket
-     * @return \Modules\Ecommerce\Application\Basket\Basket
+     * @return \Modules\Basket\Application\Basket\Basket
      */
     public function current()
     {

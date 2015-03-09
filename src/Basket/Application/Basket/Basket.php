@@ -1,4 +1,4 @@
-<?php namespace Modules\Ecommerce\Application\Basket;
+<?php namespace Modules\Basket\Application\Basket;
 
 use Closure;
 use Money\Currency;
@@ -84,7 +84,7 @@ interface Basket
 
     /**
      * Find the current basket
-     * @return \Modules\Ecommerce\Application\Basket\Basket
+     * @return \Modules\Basket\Application\Basket\Basket
      */
     public function current();
 }
