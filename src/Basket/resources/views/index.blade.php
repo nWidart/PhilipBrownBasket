@@ -23,7 +23,7 @@
             <tr data-sku="{{ $product->sku }}">
                 <td>
                     <div class="col-md-2">
-                        <img src="http://placehold.it/80x80" alt="..." class="img-thumbnail">
+                        <img src="http://placephant.com/80x80" alt="..." class="img-thumbnail">
                     </div>
                     {{ $product->name }}
                 </td>
