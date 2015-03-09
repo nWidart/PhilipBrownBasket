@@ -157,7 +157,7 @@ class PhilipBrownBasket implements Basket
 
     /**
      * Get the processed meta data of the basket
-     * @return array
+     * @return object
      */
     public function meta()
     {
