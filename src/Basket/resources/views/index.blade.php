@@ -20,7 +20,7 @@
             </thead>
             <tbody>
             <?php foreach($basket->products() as $product): ?>
-            <tr>
+            <tr data-sku="{{ $product->sku }}">
                 <td>
                     <div class="col-md-2">
                         <img src="http://placehold.it/80x80" alt="..." class="img-thumbnail">
@@ -35,7 +35,7 @@
                 <td>{{ $product->price->getAmount()/100 }} {{ $product->price->getCurrency() }}</td>
                 <td>{{ $product->price->getAmount()/100 }} {{ $product->price->getCurrency() }}</td>
                 <td>
-                    <a class="btn btn-danger btn-xs jsRemoveProduct" href="" data-sku="{{ $product->sku }}">Delete</a>
+                    <a class="btn btn-danger btn-xs jsRemoveProduct" href="">Delete</a>
                 </td>
             </tr>
             <?php endforeach; ?>

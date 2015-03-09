@@ -27,11 +27,13 @@
         },
         makeRemoveProductRequest: function () {
             var self = this;
+            console.log($(self.element).closest('tr').data(self.settings.dataSku));
+            return false;
             $.ajax({
                 type: 'POST',
                 url: this.settings.removeProductFromBasketRoute,
                 data: {
-                    'sku': $(self.element).data(self.settings.dataSku)
+                    'sku': $(self.element).closest('tr').data(self.settings.dataSku)
                 },
                 success: function (data) {
                     self.removeProductRow();
