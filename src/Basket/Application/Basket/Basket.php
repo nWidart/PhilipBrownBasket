@@ -87,4 +87,10 @@ interface Basket
      * @return \Modules\Basket\Application\Basket\Basket
      */
     public function current();
+
+    /**
+     * Get the processed meta data of the basket
+     * @return array
+     */
+    public function meta();
 }

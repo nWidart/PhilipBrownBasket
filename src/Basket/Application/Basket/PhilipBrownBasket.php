@@ -6,7 +6,17 @@ use Money\Currency;
 use Money\Money;
 use PhilipBrown\Basket\Basket as PhilipBrownBasketImplementation;
 use PhilipBrown\Basket\Collection;
+use PhilipBrown\Basket\MetaData\DeliveryMetaData;
+use PhilipBrown\Basket\MetaData\DiscountMetaData;
+use PhilipBrown\Basket\MetaData\ProductsMetaData;
+use PhilipBrown\Basket\MetaData\SubtotalMetaData;
+use PhilipBrown\Basket\MetaData\TaxableMetaData;
+use PhilipBrown\Basket\MetaData\TaxMetaData;
+use PhilipBrown\Basket\MetaData\TotalMetaData;
+use PhilipBrown\Basket\MetaData\ValueMetaData;
+use PhilipBrown\Basket\Processor;
 use PhilipBrown\Basket\Product;
+use PhilipBrown\Basket\Reconcilers\DefaultReconciler;
 use PhilipBrown\Basket\TaxRate;
 
 class PhilipBrownBasket implements Basket
@@ -140,6 +150,17 @@ class PhilipBrownBasket implements Basket
     }
 
     /**
+     * Get the processed meta data of the basket
+     * @return array
+     */
+    public function meta()
+    {
+        $processor = $this->reconcile();
+
+        return $processor->meta($this->current());
+    }
+
+    /**
      * Check if the given product sku number is present in the basket
      * @param string $sku
      * @return bool
@@ -147,5 +168,26 @@ class PhilipBrownBasket implements Basket
     private function productIsInBasket($sku)
     {
         return array_key_exists($sku, $this->basket->products()->toArray());
+    }
+
+    /**
+     * @return Processor
+     */
+    private function reconcile()
+    {
+        $reconciler = new DefaultReconciler;
+
+        $meta = [
+            new DeliveryMetaData($reconciler),
+            new DiscountMetaData($reconciler),
+            new ProductsMetaData,
+            new SubtotalMetaData($reconciler),
+            new TaxableMetaData,
+            new TaxMetaData($reconciler),
+            new TotalMetaData($reconciler),
+            new ValueMetaData($reconciler)
+        ];
+
+        return new Processor($reconciler, $meta);
     }
 }
