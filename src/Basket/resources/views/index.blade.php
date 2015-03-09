@@ -73,7 +73,7 @@
                 <td colspan="4">
                     <span class="pull-right">Subtotal</span>
                 </td>
-                <td></td>
+                <td>{{ $basketMeta['subtotal']->getAmount() / 100 }} {{ $basketMeta['subtotal']->getCurrency() }}</td>
             </tr>
             <tr>
                 <td colspan="4">
@@ -89,15 +89,9 @@
             </tr>
             <tr>
                 <td colspan="4">
-                    <span class="pull-right">VAT (17.5%)</span>
+                    <span class="pull-right">VAT</span>
                 </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td colspan="4">
-                    <span class="pull-right">VAT (23%)</span>
-                </td>
-                <td></td>
+                <td>{{ $basketMeta['tax']->getAmount() / 100 }} {{ $basketMeta['tax']->getCurrency() }}</td>
             </tr>
             <tr>
                 <td colspan="4">
@@ -127,7 +121,7 @@
                 <td colspan="4">
                     <span class="pull-right">Total</span>
                 </td>
-                <td></td>
+                <td>{{ $basketMeta['total']->getAmount() / 100 }} {{ $basketMeta['total']->getCurrency() }}</td>
             </tr>
             </tbody>
         </table>
