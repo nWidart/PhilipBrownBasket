@@ -2,7 +2,6 @@
 
 use Illuminate\Contracts\View\View;
 use Modules\Ecommerce\Application\Basket\Basket;
-use Modules\Ecommerce\Domain\Repository\BasketRepository;
 
 class CartViewComposer
 {
@@ -11,10 +10,9 @@ class CartViewComposer
      */
     private $basket;
 
-    public function __construct(BasketRepository $basket)
+    public function __construct(Basket $basket)
     {
-        $newBasket = app('Modules\Ecommerce\Application\Basket\Basket');
-        $this->basket = $basket->current() ?: $newBasket;
+        $this->basket = $basket->current();
     }
 
     public function compose(View $view)
