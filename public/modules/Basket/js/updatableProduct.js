@@ -9,7 +9,11 @@
             productCounterSelector: '.jsProductCounter',
             itemCounterSelector: '.jsItemCounter',
             dataSku: 'sku',
-            countLoaderSelector: '.countLoader'
+            countLoaderSelector: '.countLoader',
+            subtotalSelector: '.jsSubtotal',
+            totalTaxSelector: '.jsTotalTax',
+            totalDeliverySelector: '.jsTotalDelivery',
+            totalSelector: '.jsTotal'
         };
 
     // The actual plugin constructor
@@ -30,6 +34,12 @@
             $(this.settings.productCounterSelector).text(productCount);
             $(this.settings.itemCounterSelector).text(itemCount);
         },
+        updateTotals: function (subtotal, totalTax, totalDelivery, total) {
+            $(this.settings.subtotalSelector).text(subtotal);
+            $(this.settings.totalTaxSelector).text(totalTax);
+            $(this.settings.totalDeliverySelector).text(totalDelivery);
+            $(this.settings.totalSelector).text(total);
+        },
         makeUpdateProductRequest: function () {
             var self = this;
             $.ajax({
@@ -40,7 +50,9 @@
                     'count': $(self.element).val()
                 },
                 success: function (data) {
-                    self.updateCounters(data.productCount, data.itemCount)
+                    self.updateCounters(data.productCount, data.itemCount);
+                    self.updateTotals(data.subtotal, data.totalTax, data.totalDelivery, data.total);
+                    // Update row values
                     if (data.removed) {
                         self.removeProductRow();
                     } else {

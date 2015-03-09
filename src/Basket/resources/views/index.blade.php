@@ -49,9 +49,9 @@
                            value="{{ $product->quantity }}">
                 </td>
 
-                <td>{{ $product->price->getAmount()/100 }} {{ $product->price->getCurrency() }}</td>
-                <td>{{ $product->total_tax->getAmount()/100 }} {{ $product->total_tax->getCurrency() }}</td>
-                <td>{{ $product->total->getAmount()/100 }} {{ $product->total->getCurrency() }}</td>
+                <td>{{ MoneyFormatter::format($product->price) }}</td>
+                <td>{{ MoneyFormatter::format($product->total_tax) }}</td>
+                <td>{{ MoneyFormatter::format($product->total) }}</td>
                 <td>
                     <a class="btn btn-danger btn-xs jsRemoveProduct" href="">Delete</a>
                 </td>
@@ -75,7 +75,7 @@
                 <td colspan="5">
                     <span class="pull-right">Subtotal</span>
                 </td>
-                <td>{{ $basket->subtotal->getAmount() / 100 }} {{ $basket->subtotal->getCurrency() }}</td>
+                <td class="jsSubtotal">{{ MoneyFormatter::format($basket->subtotal) }}</td>
             </tr>
             <tr>
                 <td colspan="5">
@@ -93,7 +93,7 @@
                 <td colspan="5">
                     <span class="pull-right">VAT</span>
                 </td>
-                <td>{{ $basket->tax->getAmount() / 100 }} {{ $basket->tax->getCurrency() }}</td>
+                <td class="jsTotalTax">{{ MoneyFormatter::format($basket->tax) }}</td>
             </tr>
             <tr>
                 <td colspan="5">
@@ -117,13 +117,13 @@
                 <td colspan="5">
                     <span class="pull-right">Global Shipping</span>
                 </td>
-                <td>{{ $basket->delivery->getAmount() / 100 }} {{ $basket->delivery->getCurrency() }}</td>
+                <td class="jsTotalDelivery">{{ MoneyFormatter::format($basket->delivery) }}</td>
             </tr>
             <tr>
                 <td colspan="5">
                     <span class="pull-right">Total</span>
                 </td>
-                <td>{{ $basket->total->getAmount() / 100 }} {{ $basket->total->getCurrency() }}</td>
+                <td class="jsTotal">{{ MoneyFormatter::format($basket->total) }}</td>
             </tr>
             </tbody>
         </table>
@@ -141,7 +141,11 @@
                     dataSku: 'sku',
                     productCounterSelector: '.jsProductCounter',
                     itemCounterSelector: '.jsItemCounter',
-                    countLoaderSelector: '.countLoader'
+                    countLoaderSelector: '.countLoader',
+                    subtotalSelector: '.jsSubtotal',
+                    totalTaxSelector: '.jsTotalTax',
+                    totalDeliverySelector: '.jsTotalDelivery',
+                    totalSelector: '.jsTotal'
                 });
             });
 

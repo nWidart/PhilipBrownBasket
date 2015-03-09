@@ -2,6 +2,8 @@
 
 use Illuminate\Routing\Controller;
 use Modules\Basket\Application\Basket\Basket;
+use PhilipBrown\Basket\Formatters\MoneyFormatter;
+use Modules\Basket\Application\Basket\MoneyFormatterFacade;
 
 class BasketController extends Controller
 {

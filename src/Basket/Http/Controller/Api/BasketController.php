@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Response;
 use Modules\Basket\Application\Basket\Basket;
 use Money\Currency;
 use Money\Money;
+use PhilipBrown\Basket\Formatters\MoneyFormatter;
 use PhilipBrown\Basket\Product;
 
 class BasketController extends Controller
@@ -14,10 +15,15 @@ class BasketController extends Controller
      * @var Basket
      */
     private $basket;
+    /**
+     * @var MoneyFormatter
+     */
+    private $moneyFormatter;
 
-    public function __construct(Basket $basket)
+    public function __construct(Basket $basket, MoneyFormatter $moneyFormatter)
     {
         $this->basket = $basket;
+        $this->moneyFormatter = $moneyFormatter;
     }
 
     /**
@@ -94,7 +100,11 @@ class BasketController extends Controller
     {
         return [
             'productCount' => $this->basket->products()->count(),
-            'itemCount' => $this->basket->meta()->products_count
+            'itemCount' => $this->basket->meta()->products_count,
+            'subtotal' => $this->moneyFormatter->format($this->basket->meta()->subtotal),
+            'totalTax' => $this->moneyFormatter->format($this->basket->meta()->tax),
+            'totalDelivery' => $this->moneyFormatter->format($this->basket->meta()->delivery),
+            'total' => $this->moneyFormatter->format($this->basket->meta()->total),
         ];
     }
 }
