@@ -1,8 +1,10 @@
 <?php namespace Modules\Basket;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Modules\Basket\Application\Basket\PhilipBrownBasket;
 use Modules\Basket\Infrastructure\Repositories\SessionBasketRepository;
+use PhilipBrown\Basket\Formatters\MoneyFormatter;
 
 class BasketServiceProvider extends ServiceProvider
 {
@@ -36,5 +38,16 @@ class BasketServiceProvider extends ServiceProvider
 
             return new PhilipBrownBasket($basket, $basketRepository);
         });
+
+        $this->app->bindShared('PhilipBrown\Basket\Formatters\MoneyFormatter', function () {
+            return new MoneyFormatter('nl_NL');
+        });
+        $aliasLoader = AliasLoader::getInstance();
+        $aliasLoader->alias('MoneyFormatter', 'Modules\Basket\Application\Basket\MoneyFormatterFacade');
+    }
+
+    public function provides()
+    {
+        return ['PhilipBrown\Basket\Formatters\MoneyFormatter'];
     }
 }
