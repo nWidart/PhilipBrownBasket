@@ -5,6 +5,9 @@
         .show {
             display: inline !important;
         }
+        .btn:hover, .btn:focus, .btn.focus {
+            color: #000;
+        }
     </style>
 @stop
 
