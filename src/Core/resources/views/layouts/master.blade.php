@@ -6,6 +6,8 @@
         <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.2/flatly/bootstrap.min.css" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="{{ Module::asset('core:css/main.css') }}" rel="stylesheet">
+        @section('styles')
+        @show
     </head>
     <body>
         @include('core::partials.navigation')

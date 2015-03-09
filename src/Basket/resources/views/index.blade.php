@@ -1,5 +1,19 @@
 @extends('core::layouts.master')
 
+@section('styles')
+    <style>
+        td {
+            position: relative;
+        }
+        .countLoader {
+            position: absolute;
+            top: 18px;
+            right: 15px;
+            display: none;
+        }
+    </style>
+@stop
+
 @section('content')
     <div class="row">
         <div class="col-md-8">
@@ -28,6 +42,7 @@
                     {{ $product->name }}
                 </td>
                 <td>
+                    <span class="countLoader"><i class="fa fa-spinner fa-pulse"></i></span>
                     <input class="form-control jsUpdateProductCount" type="text"
                            name="update[{{ $product->sku }}][quantity]"
                            value="{{ $product->quantity }}">
@@ -127,7 +142,8 @@
             $('.jsUpdateProductCount').each(function (index, value) {
                 $(value).updatableProduct({
                     updateProductCountRoute: '{{ route('api.basket.update') }}',
-                    dataSku: 'sku'
+                    dataSku: 'sku',
+                    countLoaderSelector: '.countLoader'
                 });
             });
 

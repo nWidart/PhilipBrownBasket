@@ -6,7 +6,8 @@
     var pluginName = "updatableProduct",
         defaults = {
             updateProductCountRoute: "",
-            dataSku: 'sku'
+            dataSku: 'sku',
+            countLoaderSelector: '.countLoader'
         };
 
     // The actual plugin constructor
@@ -30,6 +31,7 @@
                     'count': $(self.element).val()
                 },
                 success: function (data) {
+                    $(self.element).siblings(self.settings.countLoaderSelector).fadeOut();
                 }
             });
         },
@@ -37,6 +39,7 @@
             var self = this;
             $(this.element).on('change', function (e) {
                 e.preventDefault();
+                $(self.element).siblings(self.settings.countLoaderSelector).show();
                 self.makeUpdateProductRequest();
             });
         }
