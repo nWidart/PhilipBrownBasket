@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Response;
 use Modules\Basket\Application\Basket\Basket;
 use Money\Currency;
 use Money\Money;
-use PhilipBrown\Basket\Product;
 
 class BasketController extends Controller
 {
