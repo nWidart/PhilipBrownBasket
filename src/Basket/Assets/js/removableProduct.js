@@ -5,6 +5,7 @@
         defaults = {
             removeProductFromBasketRoute: "",
             productCounterSelector: '.jsProductCounter',
+            itemCounterSelector: '.jsItemCounter',
             dataSku: 'sku'
         };
 
@@ -19,8 +20,9 @@
 
     // Avoid Plugin.prototype conflicts
     $.extend(removableProduct.prototype, {
-        updateCounters: function (productCount) {
+        updateCounters: function (productCount, itemCount) {
             $(this.settings.productCounterSelector).text(productCount);
+            $(this.settings.itemCounterSelector).text(itemCount);
         },
         removeProductRow: function () {
             $(this.element).closest('tr').fadeOut();
@@ -35,7 +37,7 @@
                 },
                 success: function (data) {
                     self.removeProductRow();
-                    self.updateCounters(data.productCount)
+                    self.updateCounters(data.productCount, data.itemCount)
                 }
             });
         },

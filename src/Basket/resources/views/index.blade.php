@@ -67,7 +67,7 @@
                 <td colspan="5">
                     <span class="pull-right">Items</span>
                 </td>
-                <td>
+                <td class="jsItemCounter">
                     {{ $basket->products_count }}
                 </td>
             </tr>
@@ -140,6 +140,7 @@
                     updateProductCountRoute: '{{ route('api.basket.update') }}',
                     dataSku: 'sku',
                     productCounterSelector: '.jsProductCounter',
+                    itemCounterSelector: '.jsItemCounter',
                     countLoaderSelector: '.countLoader'
                 });
             });
@@ -148,6 +149,7 @@
                 $(value).removableProduct({
                     removeProductFromBasketRoute: '{{ route('api.basket.remove') }}',
                     productCounterSelector: '.jsProductCounter',
+                    itemCounterSelector: '.jsItemCounter',
                     dataSku: 'sku'
                 });
             });

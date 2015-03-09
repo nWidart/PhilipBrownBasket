@@ -76,8 +76,8 @@ class BasketController extends Controller
         $this->basket->remove($request->get('sku'));
 
         return Response::json([
-            'productCount' => $this->basket->count(),
-            'products' => $this->basket->products()->toArray()
+            'productCount' => $this->basket->products()->count(),
+            'itemCount' => $this->basket->meta()->products_count
         ]);
     }
 
