@@ -45,7 +45,7 @@ class BasketController extends Controller
      */
     public function update(Request $request)
     {
-        $count = $request->get('count');
+        $count = (int) $request->get('count');
         $sku = $request->get('sku');
 
         if ($this->guardForNegativeCount($count, $sku)) {
