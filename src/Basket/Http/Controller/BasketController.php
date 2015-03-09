@@ -2,7 +2,6 @@
 
 use Illuminate\Routing\Controller;
 use Modules\Ecommerce\Application\Basket\Basket;
-use Modules\Ecommerce\Domain\Repository\BasketRepository;
 
 class BasketController extends Controller
 {
