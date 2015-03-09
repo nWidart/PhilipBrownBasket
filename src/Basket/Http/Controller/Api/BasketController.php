@@ -51,8 +51,8 @@ class BasketController extends Controller
         if ($this->guardForNegativeCount($count, $sku)) {
             return Response::json([
                 'removed' => true,
-                'productCount' => $this->basket->count(),
-                'products' => $this->basket->products()->toArray()
+                'productCount' => $this->basket->products()->count(),
+                'itemCount' => $this->basket->meta()->products_count
             ]);
         }
 
@@ -61,8 +61,8 @@ class BasketController extends Controller
         });
 
         return Response::json([
-            'productCount' => $this->basket->count(),
-            'products' => $this->basket->products()->toArray()
+            'productCount' => $this->basket->products()->count(),
+            'itemCount' => $this->basket->meta()->products_count
         ]);
     }
 

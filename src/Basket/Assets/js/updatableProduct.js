@@ -7,6 +7,7 @@
         defaults = {
             updateProductCountRoute: "",
             productCounterSelector: '.jsProductCounter',
+            itemCounterSelector: '.jsItemCounter',
             dataSku: 'sku',
             countLoaderSelector: '.countLoader'
         };
@@ -25,8 +26,9 @@
         removeProductRow: function () {
             $(this.element).closest('tr').fadeOut();
         },
-        updateCounters: function (productCount) {
+        updateCounters: function (productCount, itemCount) {
             $(this.settings.productCounterSelector).text(productCount);
+            $(this.settings.itemCounterSelector).text(itemCount);
         },
         makeUpdateProductRequest: function () {
             var self = this;
@@ -39,7 +41,7 @@
                 },
                 success: function (data) {
                     if (data.removed) {
-                        self.updateCounters(data.productCount)
+                        self.updateCounters(data.productCount, data.itemCount)
                         self.removeProductRow();
                     } else {
                         $(self.element).siblings(self.settings.countLoaderSelector).fadeOut();
