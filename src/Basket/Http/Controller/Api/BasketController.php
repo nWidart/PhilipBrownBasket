@@ -32,10 +32,7 @@ class BasketController extends Controller
 
         $this->basket->addOrUpdate($sku, $request->get('name'), $price);
 
-        return Response::json([
-            'productCount' => $this->basket->count(),
-            'products' => $this->basket->products()->toArray()
-        ]);
+        return Response::json($this->getResponseDataForBasket());
     }
 
     /**
@@ -49,21 +46,14 @@ class BasketController extends Controller
         $sku = $request->get('sku');
 
         if ($this->guardForNegativeCount($count, $sku)) {
-            return Response::json([
-                'removed' => true,
-                'productCount' => $this->basket->products()->count(),
-                'itemCount' => $this->basket->meta()->products_count
-            ]);
+            return Response::json(array_merge($this->getResponseDataForBasket(), ['removed' => true]));
         }
 
         $this->basket->update($sku, function (Product $product) use ($count) {
             $product->quantity($count);
         });
 
-        return Response::json([
-            'productCount' => $this->basket->products()->count(),
-            'itemCount' => $this->basket->meta()->products_count
-        ]);
+        return Response::json($this->getResponseDataForBasket());
     }
 
     /**
@@ -75,10 +65,7 @@ class BasketController extends Controller
     {
         $this->basket->remove($request->get('sku'));
 
-        return Response::json([
-            'productCount' => $this->basket->products()->count(),
-            'itemCount' => $this->basket->meta()->products_count
-        ]);
+        return Response::json($this->getResponseDataForBasket());
     }
 
     /**
@@ -97,5 +84,17 @@ class BasketController extends Controller
         }
 
         return false;
+    }
+
+    /**
+     * Return the response data for the current basket
+     * @return array
+     */
+    private function getResponseDataForBasket()
+    {
+        return [
+            'productCount' => $this->basket->products()->count(),
+            'itemCount' => $this->basket->meta()->products_count
+        ];
     }
 }
