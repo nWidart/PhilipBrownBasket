@@ -59,7 +59,7 @@
                 <td colspan="4">
                     <span class="pull-right">Products</span>
                 </td>
-                <td class="jsProductCount">{{ $basket->products()->count() }}</td>
+                <td class="jsProductCounter">{{ $basket->products()->count() }}</td>
             </tr>
             <tr>
                 <td colspan="4">
