@@ -42,7 +42,7 @@
 @stop
 
 @section('scripts')
-    <script src="{{ Module::asset('ecommerce:js/buyableProduct.js') }}"></script>
+    <script src="{{ Module::asset('basket:js/buyableProduct.js') }}"></script>
     <script type="text/javascript">
         $( document ).ready(function() {
             $('.tip').tooltip();

@@ -119,7 +119,7 @@
 @stop
 
 @section('scripts')
-    <script src="{{ Module::asset('ecommerce:js/removableProduct.js') }}"></script>
+    <script src="{{ Module::asset('basket:js/removableProduct.js') }}"></script>
     <script>
         $(document).ready(function () {
             $('.jsRemoveProduct').each(function (index, value) {
