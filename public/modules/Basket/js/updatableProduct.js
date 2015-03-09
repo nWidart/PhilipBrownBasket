@@ -40,8 +40,8 @@
                     'count': $(self.element).val()
                 },
                 success: function (data) {
+                    self.updateCounters(data.productCount, data.itemCount)
                     if (data.removed) {
-                        self.updateCounters(data.productCount, data.itemCount)
                         self.removeProductRow();
                     } else {
                         $(self.element).siblings(self.settings.countLoaderSelector).fadeOut();
