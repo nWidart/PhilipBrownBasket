@@ -119,15 +119,6 @@ class PhilipBrownBasket implements Basket
      */
     public function current()
     {
-        return $this->basketRepository->current() ?: $this->pickupBasket();
-    }
-
-    /**
-     * Pickup a new basket
-     * @return Basket
-     */
-    private function pickupBasket()
-    {
-        return new PhilipBrownBasketImplementation(new Belgium());
+        return $this->basketRepository->current() ?: $this->basket;
     }
 }
