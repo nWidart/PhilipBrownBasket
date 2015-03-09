@@ -29,11 +29,12 @@
                 <td class="col-md-6">Name</td>
                 <td class="col-md-1">Quantity</td>
                 <td class="col-md-1">Price</td>
+                <td class="col-md-1">Tax</td>
                 <td class="col-md-2" colspan="2">Total</td>
             </tr>
             </thead>
             <tbody>
-            <?php foreach($basket->products() as $product): ?>
+            <?php foreach($products as $product): ?>
             <tr data-sku="{{ $product->sku }}">
                 <td>
                     <div class="col-md-2">
@@ -49,79 +50,80 @@
                 </td>
 
                 <td>{{ $product->price->getAmount()/100 }} {{ $product->price->getCurrency() }}</td>
-                <td>{{ $product->price->getAmount()/100 }} {{ $product->price->getCurrency() }}</td>
+                <td>{{ $product->total_tax->getAmount()/100 }} {{ $product->total_tax->getCurrency() }}</td>
+                <td>{{ $product->total->getAmount()/100 }} {{ $product->total->getCurrency() }}</td>
                 <td>
                     <a class="btn btn-danger btn-xs jsRemoveProduct" href="">Delete</a>
                 </td>
             </tr>
             <?php endforeach; ?>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <span class="pull-right">Products</span>
                 </td>
-                <td class="jsProductCounter">{{ $basket->products()->count() }}</td>
+                <td class="jsProductCounter">{{ $products->count() }}</td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <span class="pull-right">Items</span>
                 </td>
                 <td>
-
+                    {{ $basket->products_count }}
                 </td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <span class="pull-right">Subtotal</span>
                 </td>
-                <td>{{ $basketMeta['subtotal']->getAmount() / 100 }} {{ $basketMeta['subtotal']->getCurrency() }}</td>
+                <td>{{ $basket->subtotal->getAmount() / 100 }} {{ $basket->subtotal->getCurrency() }}</td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <span class="pull-right">Subtotal (with discounts)</span>
                 </td>
                 <td></td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <span class="pull-right">Discount (7.5%)</span>
                 </td>
                 <td></td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <span class="pull-right">VAT</span>
                 </td>
-                <td>{{ $basketMeta['tax']->getAmount() / 100 }} {{ $basketMeta['tax']->getCurrency() }}</td>
+                <td>{{ $basket->tax->getAmount() / 100 }} {{ $basket->tax->getCurrency() }}</td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <span class="pull-right">Item Based Shipping</span>
                 </td>
                 <td></td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <span class="pull-right">Global Tax (12.5%)</span>
                 </td>
                 <td></td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <span class="pull-right">Global discount (5%)</span>
                 </td>
                 <td></td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <span class="pull-right">Global Shipping</span>
                 </td>
-                <td></td>
+                <td>{{ $basket->delivery->getAmount() / 100 }} {{ $basket->delivery->getCurrency() }}</td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <span class="pull-right">Total</span>
                 </td>
-                <td>{{ $basketMeta['total']->getAmount() / 100 }} {{ $basketMeta['total']->getCurrency() }}</td>
+                <td>{{ $basket->total->getAmount() / 100 }} {{ $basket->total->getCurrency() }}</td>
             </tr>
             </tbody>
         </table>

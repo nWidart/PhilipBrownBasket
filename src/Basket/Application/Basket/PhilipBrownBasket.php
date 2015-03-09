@@ -60,7 +60,13 @@ class PhilipBrownBasket implements Basket
      */
     public function products()
     {
-        return $this->basket->products();
+        $processor = $this->reconcile();
+
+        $products = array_map(function ($product) {
+            return (object) $product;
+        }, $processor->products($this->current()));
+
+        return new Collection($products);
     }
 
     /**
@@ -120,7 +126,7 @@ class PhilipBrownBasket implements Basket
     public function addOrUpdate($sku, $name, Money $price)
     {
         if ($this->productIsInBasket($sku)) {
-            $this->update($sku, function(Product $product) {
+            $this->update($sku, function (Product $product) {
                 $product->increment();
             });
         } else {
@@ -157,7 +163,7 @@ class PhilipBrownBasket implements Basket
     {
         $processor = $this->reconcile();
 
-        return $processor->meta($this->current());
+        return (object) $processor->meta($this->current());
     }
 
     /**

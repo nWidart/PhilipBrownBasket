@@ -17,9 +17,9 @@ class BasketController extends Controller
 
     public function index()
     {
-        $basket = $this->basket->current();
-        $basketMeta = $this->basket->meta();
+        $basket = $this->basket->meta();
+        $products = $this->basket->products();
 
-        return view('basket::index', compact('basket', 'basketMeta'));
+        return view('basket::index', compact('basket', 'products'));
     }
 }
