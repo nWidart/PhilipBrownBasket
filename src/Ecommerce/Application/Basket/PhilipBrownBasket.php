@@ -6,6 +6,7 @@ use Money\Currency;
 use Money\Money;
 use PhilipBrown\Basket\Basket as PhilipBrownBasketImplementation;
 use PhilipBrown\Basket\Collection;
+use PhilipBrown\Basket\Jurisdictions\Belgium;
 use PhilipBrown\Basket\Product;
 use PhilipBrown\Basket\TaxRate;
 
@@ -118,6 +119,15 @@ class PhilipBrownBasket implements Basket
      */
     public function current()
     {
-        return $this->basketRepository->current();
+        return $this->basketRepository->current() ?: $this->pickupBasket();
+    }
+
+    /**
+     * Pickup a new basket
+     * @return Basket
+     */
+    private function pickupBasket()
+    {
+        return new PhilipBrownBasketImplementation(new Belgium());
     }
 }
