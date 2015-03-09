@@ -1,7 +1,6 @@
 <?php namespace Modules\Ecommerce\UserInterface\Composer;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Session;
 use Modules\Ecommerce\Application\Basket\Basket;
 use Modules\Ecommerce\Domain\Repository\BasketRepository;
 
