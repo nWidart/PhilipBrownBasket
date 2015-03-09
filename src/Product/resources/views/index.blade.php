@@ -5,7 +5,7 @@
         .show {
             display: inline !important;
         }
-        .btn:hover, .btn:focus, .btn.focus {
+        .wishlist:hover, .wishlist:focus, .wishlist.focus {
             color: #000;
         }
     </style>
@@ -37,7 +37,7 @@
                         </a>
                         <span class="jsLoader hidden"><i class="fa fa-spinner fa-pulse"></i></span>
                         <span class="pull-right">
-                            <a class="btn btn-xs tip wishlist-add" href="" title=""
+                            <a class="btn btn-xs tip wishlist wishlist-add" href="" title=""
                                data-original-title="Add to Wishlist">
                                 <i class="fa fa-star-o fa-lg"></i>
                             </a>
