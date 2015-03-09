@@ -6,7 +6,6 @@ use Money\Currency;
 use Money\Money;
 use PhilipBrown\Basket\Basket as PhilipBrownBasketImplementation;
 use PhilipBrown\Basket\Collection;
-use PhilipBrown\Basket\Jurisdictions\Belgium;
 use PhilipBrown\Basket\Product;
 use PhilipBrown\Basket\TaxRate;
 
