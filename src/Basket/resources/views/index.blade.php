@@ -143,6 +143,7 @@
                 $(value).updatableProduct({
                     updateProductCountRoute: '{{ route('api.basket.update') }}',
                     dataSku: 'sku',
+                    productCounterSelector: '.jsProductCounter',
                     countLoaderSelector: '.countLoader'
                 });
             });

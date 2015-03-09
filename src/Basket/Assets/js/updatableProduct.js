@@ -6,6 +6,7 @@
     var pluginName = "updatableProduct",
         defaults = {
             updateProductCountRoute: "",
+            productCounterSelector: '.jsProductCounter',
             dataSku: 'sku',
             countLoaderSelector: '.countLoader'
         };
@@ -21,6 +22,12 @@
 
     // Avoid Plugin.prototype conflicts
     $.extend(Plugin.prototype, {
+        removeProductRow: function () {
+            $(this.element).closest('tr').fadeOut();
+        },
+        updateCounters: function (productCount) {
+            $(this.settings.productCounterSelector).text(productCount);
+        },
         makeUpdateProductRequest: function () {
             var self = this;
             $.ajax({
@@ -31,7 +38,12 @@
                     'count': $(self.element).val()
                 },
                 success: function (data) {
-                    $(self.element).siblings(self.settings.countLoaderSelector).fadeOut();
+                    if (data.removed) {
+                        self.updateCounters(data.productCount)
+                        self.removeProductRow();
+                    } else {
+                        $(self.element).siblings(self.settings.countLoaderSelector).fadeOut();
+                    }
                 }
             });
         },
