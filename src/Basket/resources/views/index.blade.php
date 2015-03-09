@@ -43,7 +43,7 @@
                 </td>
                 <td>
                     <span class="countLoader"><i class="fa fa-spinner fa-pulse"></i></span>
-                    <input class="form-control jsUpdateProductCount" type="text"
+                    <input class="form-control jsUpdateProductCount" type="number"
                            name="update[{{ $product->sku }}][quantity]"
                            value="{{ $product->quantity }}">
                 </td>
