@@ -28,7 +28,8 @@
                     {{ $product->name }}
                 </td>
                 <td>
-                    <input class="form-control" type="text" name="update[{{ $product->sku }}][quantity]"
+                    <input class="form-control jsUpdateProductCount" type="text"
+                           name="update[{{ $product->sku }}][quantity]"
                            value="{{ $product->quantity }}">
                 </td>
 
@@ -120,8 +121,16 @@
 
 @section('scripts')
     <script src="{{ Module::asset('basket:js/removableProduct.js') }}"></script>
+    <script src="{{ Module::asset('basket:js/updatableProduct.js') }}"></script>
     <script>
         $(document).ready(function () {
+            $('.jsUpdateProductCount').each(function (index, value) {
+                $(value).updatableProduct({
+                    updateProductCountRoute: '{{ route('api.basket.update') }}',
+                    dataSku: 'sku'
+                });
+            });
+
             $('.jsRemoveProduct').each(function (index, value) {
                 $(value).removableProduct({
                     removeProductFromBasketRoute: '{{ route('api.basket.remove') }}',

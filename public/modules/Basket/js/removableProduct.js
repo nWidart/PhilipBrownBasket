@@ -27,8 +27,6 @@
         },
         makeRemoveProductRequest: function () {
             var self = this;
-            console.log($(self.element).closest('tr').data(self.settings.dataSku));
-            return false;
             $.ajax({
                 type: 'POST',
                 url: this.settings.removeProductFromBasketRoute,

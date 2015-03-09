@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Response;
 use Modules\Basket\Application\Basket\Basket;
 use Money\Currency;
 use Money\Money;
+use PhilipBrown\Basket\Product;
 
 class BasketController extends Controller
 {
@@ -30,6 +31,26 @@ class BasketController extends Controller
         $sku = $request->get('sku');
 
         $this->basket->addOrUpdate($sku, $request->get('name'), $price);
+
+        return Response::json([
+            'productCount' => $this->basket->count(),
+            'products' => $this->basket->products()->toArray()
+        ]);
+    }
+
+    /**
+     * Update a product on the Basket
+     * @param Request $request
+     * @return Response
+     */
+    public function update(Request $request)
+    {
+        $count = $request->get('count');
+        $sku = $request->get('sku');
+
+        $this->basket->update($sku, function (Product $product) use ($count) {
+            $product->quantity($count);
+        });
 
         return Response::json([
             'productCount' => $this->basket->count(),
