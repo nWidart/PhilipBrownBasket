@@ -66,6 +66,15 @@ interface Basket
     public function update($sku, Closure $action);
 
     /**
+     * Add or update a product in the basket
+     * @param string $sku
+     * @param string $name
+     * @param Money $price
+     * @return void
+     */
+    public function addOrUpdate($sku, $name, Money $price);
+
+    /**
      * Remove a product from the basket
      *
      * @param string $sku

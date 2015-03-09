@@ -30,13 +30,7 @@ class BasketController extends Controller
         $price = new Money((int) $request->get('price'), new Currency('EUR'));
         $sku = $request->get('sku');
 
-        if ($this->productIsInBasket($sku)) {
-            $this->basket->update($sku, function(Product $product) {
-                $product->increment();
-            });
-        } else {
-            $this->basket->add($sku, $request->get('name'), $price);
-        }
+        $this->basket->addOrUpdate($sku, $request->get('name'), $price);
 
         return Response::json([
             'productCount' => $this->basket->count(),
@@ -57,15 +51,5 @@ class BasketController extends Controller
             'productCount' => $this->basket->count(),
             'products' => $this->basket->products()->toArray()
         ]);
-    }
-
-    /**
-     * Check if the given product sku number is present in the basket
-     * @param string $sku
-     * @return bool
-     */
-    private function productIsInBasket($sku)
-    {
-        return array_key_exists($sku, $this->basket->products()->toArray());
     }
 }

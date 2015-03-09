@@ -101,6 +101,24 @@ class PhilipBrownBasket implements Basket
     }
 
     /**
+     * Add or update a product in the basket
+     * @param string $sku
+     * @param string $name
+     * @param Money $price
+     * @return void
+     */
+    public function addOrUpdate($sku, $name, Money $price)
+    {
+        if ($this->productIsInBasket($sku)) {
+            $this->update($sku, function(Product $product) {
+                $product->increment();
+            });
+        } else {
+            $this->add($sku, $name, $price);
+        }
+    }
+
+    /**
      * Remove a product from the basket
      * @param string $sku
      * @return void
@@ -119,5 +137,15 @@ class PhilipBrownBasket implements Basket
     public function current()
     {
         return $this->basketRepository->current() ?: $this->basket;
+    }
+
+    /**
+     * Check if the given product sku number is present in the basket
+     * @param string $sku
+     * @return bool
+     */
+    private function productIsInBasket($sku)
+    {
+        return array_key_exists($sku, $this->basket->products()->toArray());
     }
 }
