@@ -41,15 +41,23 @@ class BasketServiceProvider extends ServiceProvider
             return new PhilipBrownBasket($basket, $basketRepository);
         });
 
-        $this->app->bindShared('PhilipBrown\Basket\Formatters\MoneyFormatter', function () {
-            return new MoneyFormatter('nl_NL');
-        });
-        $aliasLoader = AliasLoader::getInstance();
-        $aliasLoader->alias('MoneyFormatter', 'Modules\Basket\Application\Basket\MoneyFormatterFacade');
+        $this->setupMoneyFormatter();
     }
 
     public function provides()
     {
         return ['PhilipBrown\Basket\Formatters\MoneyFormatter'];
+    }
+
+    /**
+     * Setup the money formatter and register the Laravel Facade
+     */
+    private function setupMoneyFormatter()
+    {
+        $this->app->bindShared('PhilipBrown\Basket\Formatters\MoneyFormatter', function () {
+            return new MoneyFormatter('nl_NL');
+        });
+        $aliasLoader = AliasLoader::getInstance();
+        $aliasLoader->alias('MoneyFormatter', 'Modules\Basket\Application\Basket\MoneyFormatterFacade');
     }
 }
