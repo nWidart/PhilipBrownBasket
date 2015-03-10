@@ -49,9 +49,9 @@
                            value="{{ $product->quantity }}">
                 </td>
 
-                <td>{{ MoneyFormatter::format($product->price) }}</td>
-                <td>{{ MoneyFormatter::format($product->total_tax) }}</td>
-                <td>{{ MoneyFormatter::format($product->total) }}</td>
+                <td class="jsItemPrice">{{ MoneyFormatter::format($product->price) }}</td>
+                <td class="jsItemTotalTax">{{ MoneyFormatter::format($product->total_tax) }}</td>
+                <td class="jsItemTotalPrice">{{ MoneyFormatter::format($product->total) }}</td>
                 <td>
                     <a class="btn btn-danger btn-xs jsRemoveProduct" href="">Delete</a>
                 </td>
@@ -142,6 +142,9 @@
                     productCounterSelector: '.jsProductCounter',
                     itemCounterSelector: '.jsItemCounter',
                     countLoaderSelector: '.countLoader',
+                    itemPriceSelector: '.jsItemPrice',
+                    itemTotalTaxSelector: '.jsItemTotalTax',
+                    itemTotalPriceSelector: '.jsItemTotalPrice',
                     subtotalSelector: '.jsSubtotal',
                     totalTaxSelector: '.jsTotalTax',
                     totalDeliverySelector: '.jsTotalDelivery',
