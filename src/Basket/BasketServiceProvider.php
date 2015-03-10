@@ -32,14 +32,7 @@ class BasketServiceProvider extends ServiceProvider
             return new SessionBasketRepository($app['session']);
         });
 
-        $this->app->bind('Modules\Basket\Application\Basket\Basket', function ($app) {
-            $basketRepository = $app['Modules\Basket\Domain\Repository\BasketRepository'];
-
-            $currentBasket = $basketRepository->current();
-            $basket = $currentBasket ?: new Basket(new Belgium());
-
-            return new PhilipBrownBasket($basket, $basketRepository);
-        });
+        $this->bindPhilipBrownBasket();
 
         $this->setupMoneyFormatter();
     }
@@ -59,5 +52,17 @@ class BasketServiceProvider extends ServiceProvider
         });
         $aliasLoader = AliasLoader::getInstance();
         $aliasLoader->alias('MoneyFormatter', 'Modules\Basket\Application\Basket\MoneyFormatterFacade');
+    }
+
+    private function bindPhilipBrownBasket()
+    {
+        $this->app->bind('Modules\Basket\Application\Basket\Basket', function ($app) {
+            $basketRepository = $app['Modules\Basket\Domain\Repository\BasketRepository'];
+
+            $currentBasket = $basketRepository->current();
+            $basket = $currentBasket ?: new Basket(new Belgium());
+
+            return new PhilipBrownBasket($basket, $basketRepository);
+        });
     }
 }
