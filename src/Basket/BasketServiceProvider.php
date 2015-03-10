@@ -1,7 +1,9 @@
 <?php namespace Modules\Basket;
 
+use Cartalyst\Cart\Cart;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
+use Modules\Basket\Application\Basket\CartalystCartBasket;
 use Modules\Basket\Application\Basket\PhilipBrownBasket;
 use Modules\Basket\Infrastructure\Repositories\SessionBasketRepository;
 use PhilipBrown\Basket\Basket;
@@ -33,6 +35,7 @@ class BasketServiceProvider extends ServiceProvider
         });
 
         $this->bindPhilipBrownBasket();
+        //$this->bindCartalystCartBasket();
 
         $this->setupMoneyFormatter();
     }
@@ -63,6 +66,13 @@ class BasketServiceProvider extends ServiceProvider
             $basket = $currentBasket ?: new Basket(new Belgium());
 
             return new PhilipBrownBasket($basket, $basketRepository);
+        });
+    }
+
+    private function bindCartalystCartBasket()
+    {
+        $this->app->bind('Modules\Basket\Application\Basket\Basket', function ($app) {
+            return new CartalystCartBasket($app['cart']);
         });
     }
 }
