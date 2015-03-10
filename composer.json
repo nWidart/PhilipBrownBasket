@@ -9,7 +9,7 @@
   "type": "project",
   "require": {
     "laravel/framework": "~5.0",
-    "philipbrown/basket": "dev-feature/belgium",
+    "philipbrown/basket": "dev-feature/dictionary",
     "pingpong/modules": "2.0.*@dev",
     "fzaninotto/faker": "~1.4",
     "predis/predis": "~1.1"
