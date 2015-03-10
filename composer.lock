@@ -4,8 +4,237 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ca2c0dc6c7f04d06f144cdf5c4952c5f",
+    "hash": "d5ea6c44a0a64326bf480af043f6ed96",
     "packages": [
+        {
+            "name": "cartalyst/cart",
+            "version": "dev-feature/laravel-5",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:cartalyst/cart.git",
+                "reference": "a28bdefaf5386a4934daeda754133c31c68082a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cartalyst/cart/zipball/a28bdefaf5386a4934daeda754133c31c68082a2",
+                "reference": "a28bdefaf5386a4934daeda754133c31c68082a2",
+                "shasum": ""
+            },
+            "require": {
+                "cartalyst/collections": "~1.0@dev",
+                "cartalyst/conditions": "~2.0@dev",
+                "illuminate/events": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "illuminate/filesystem": "~5.0",
+                "illuminate/session": "~5.0",
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "component": "package",
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Exceptions.php"
+                ],
+                "psr-4": {
+                    "Cartalyst\\Cart\\": "src/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Cartalyst LLC",
+                    "email": "help@cartalyst.com"
+                },
+                {
+                    "name": "Ben Corlett",
+                    "email": "ben.corlett@cartalyst.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Bruno Gaspar",
+                    "email": "bruno.gaspar@cartalyst.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Dan Syme",
+                    "email": "dan.syme@cartalyst.com",
+                    "role": "Project Lead"
+                },
+                {
+                    "name": "Suhayb Wardany",
+                    "email": "su.wardany@cartalyst.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Shopping cart package featuring multiple cart instances, item attributes and Conditions.",
+            "keywords": [
+                "cart",
+                "cartalyst",
+                "ecommerce",
+                "laravel",
+                "php",
+                "shopping"
+            ],
+            "support": {
+                "source": "https://github.com/cartalyst/cart/tree/feature/laravel-5",
+                "issues": "https://github.com/cartalyst/cart/issues"
+            },
+            "time": "2015-02-26 03:57:48"
+        },
+        {
+            "name": "cartalyst/collections",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cartalyst/collections.git",
+                "reference": "2b39755c52cb69e9ac4014891d857629f682da90"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cartalyst/collections/zipball/2b39755c52cb69e9ac4014891d857629f682da90",
+                "reference": "2b39755c52cb69e9ac4014891d857629f682da90",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.4"
+            },
+            "type": "library",
+            "extra": {
+                "component": "package",
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Cartalyst\\Collections\\": "src/"
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Cartalyst LLC",
+                    "email": "help@cartalyst.com"
+                },
+                {
+                    "name": "Bruno Gaspar",
+                    "email": "bruno.gaspar@cartalyst.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Dan Syme",
+                    "email": "dan.syme@cartalyst.com",
+                    "role": "Project Lead"
+                },
+                {
+                    "name": "Suhayb Wardany",
+                    "email": "su.wardany@cartalyst.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Collection Abstaction library for PHP.",
+            "keywords": [
+                "cartalyst",
+                "collections",
+                "php"
+            ],
+            "support": {
+                "source": "https://github.com/cartalyst/collections/tree/v1.1.0",
+                "issues": "https://github.com/cartalyst/collections/issues"
+            },
+            "time": "2015-03-06 21:10:35"
+        },
+        {
+            "name": "cartalyst/conditions",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:cartalyst/conditions.git",
+                "reference": "2e94dafd83d6a27358af02e6e275a9485ca4938c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cartalyst/conditions/zipball/2e94dafd83d6a27358af02e6e275a9485ca4938c",
+                "reference": "2e94dafd83d6a27358af02e6e275a9485ca4938c",
+                "shasum": ""
+            },
+            "require": {
+                "cartalyst/collections": "~1.0",
+                "jeremeamia/superclosure": "~2.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.5",
+                "pimple/pimple": "~3.0"
+            },
+            "type": "library",
+            "extra": {
+                "component": "package",
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Cartalyst\\Conditions\\": "src/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Cartalyst LLC",
+                    "email": "help@cartalyst.com"
+                },
+                {
+                    "name": "Bruno Gaspar",
+                    "email": "bruno.gaspar@cartalyst.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Dan Syme",
+                    "email": "dan.syme@cartalyst.com",
+                    "role": "Project Lead"
+                },
+                {
+                    "name": "Suhayb Wardany",
+                    "email": "su.wardany@cartalyst.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A framework agnostic conditions package that allows you to apply conditions on Illuminate Collections.",
+            "keywords": [
+                "cartalyst",
+                "collection",
+                "condition",
+                "laravel",
+                "php"
+            ],
+            "support": {
+                "source": "https://github.com/cartalyst/conditions/tree/master",
+                "issues": "https://github.com/cartalyst/conditions/issues"
+            },
+            "time": "2015-02-25 03:29:03"
+        },
         {
             "name": "classpreloader/classpreloader",
             "version": "1.2.0",
@@ -3160,7 +3389,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "philipbrown/basket": 20,
-        "pingpong/modules": 20
+        "pingpong/modules": 20,
+        "cartalyst/cart": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

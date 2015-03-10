@@ -145,6 +145,7 @@ return [
 		'Acme\Providers\EventServiceProvider',
 		'Acme\Providers\RouteServiceProvider',
 		'Pingpong\Modules\ModulesServiceProvider',
+		'Cartalyst\Cart\Laravel\CartServiceProvider',
 	],
 
 	/*
@@ -193,6 +194,7 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Module'    => 'Pingpong\Modules\Facades\Module',
+		'Cart' => 'Cartalyst\Cart\Laravel\Facades\Cart',
 	],
 
 ];
