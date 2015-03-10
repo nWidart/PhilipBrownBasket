@@ -10,7 +10,7 @@
         </li>
         <li class="{{ Request::is('basket*') ? 'active' : '' }}">
             <a href="{{ route('basket.index') }}">
-                <i class="fa fa-shopping-cart"></i> Cart
+                <i class="fa fa-shopping-cart"></i> Basket
                 <span class="badge jsProductCounter" style="float:right;">{{ $basket->count() }}</span>
             </a>
         </li>
