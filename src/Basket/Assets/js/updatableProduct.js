@@ -10,6 +10,11 @@
             itemCounterSelector: '.jsItemCounter',
             dataSku: 'sku',
             countLoaderSelector: '.countLoader',
+            // Row values
+            itemPriceSelector: '.jsItemPrice',
+            itemTotalTaxSelector: '.jsItemTotalTax',
+            itemTotalPriceSelector: '.jsItemTotalPrice',
+            // Totals
             subtotalSelector: '.jsSubtotal',
             totalTaxSelector: '.jsTotalTax',
             totalDeliverySelector: '.jsTotalDelivery',
@@ -40,6 +45,10 @@
             $(this.settings.totalDeliverySelector).text(totalDelivery);
             $(this.settings.totalSelector).text(total);
         },
+        updateProductRow: function (itemTotalTax, itemTotal) {
+            $(this.element).parent().siblings(this.settings.itemTotalTaxSelector).text(itemTotalTax);
+            $(this.element).parent().siblings(this.settings.itemTotalPriceSelector).text(itemTotal);
+        },
         makeUpdateProductRequest: function () {
             var self = this;
             $.ajax({
@@ -52,7 +61,7 @@
                 success: function (data) {
                     self.updateCounters(data.productCount, data.itemCount);
                     self.updateTotals(data.subtotal, data.totalTax, data.totalDelivery, data.total);
-                    // Update row values
+                    self.updateProductRow(data.itemTotalTax, data.itemTotal);
                     if (data.removed) {
                         self.removeProductRow();
                     } else {
