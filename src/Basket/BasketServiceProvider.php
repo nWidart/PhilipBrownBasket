@@ -4,7 +4,9 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Modules\Basket\Application\Basket\PhilipBrownBasket;
 use Modules\Basket\Infrastructure\Repositories\SessionBasketRepository;
+use PhilipBrown\Basket\Basket;
 use PhilipBrown\Basket\Formatters\MoneyFormatter;
+use PhilipBrown\Basket\Jurisdictions\Belgium;
 
 class BasketServiceProvider extends ServiceProvider
 {
