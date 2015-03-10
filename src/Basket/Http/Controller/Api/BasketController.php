@@ -38,7 +38,7 @@ class BasketController extends Controller
 
         $this->basket->addOrUpdate($sku, $request->get('name'), $price);
 
-        return Response::json($this->getResponseDataForBasket());
+        return Response::json($this->getResponseDataForBasket($sku));
     }
 
     /**
@@ -59,7 +59,7 @@ class BasketController extends Controller
             $product->quantity($count);
         });
 
-        return Response::json($this->getResponseDataForBasket());
+        return Response::json($this->getResponseDataForBasket($sku));
     }
 
     /**
@@ -94,17 +94,40 @@ class BasketController extends Controller
 
     /**
      * Return the response data for the current basket
+     * @param string $sku
      * @return array
      */
-    private function getResponseDataForBasket()
+    private function getResponseDataForBasket($sku = null)
     {
-        return [
+        $productInfo = $this->getProductInfoForSku($sku);
+
+        return array_merge([
             'productCount' => $this->basket->products()->count(),
             'itemCount' => $this->basket->meta()->products_count,
             'subtotal' => $this->moneyFormatter->format($this->basket->meta()->subtotal),
             'totalTax' => $this->moneyFormatter->format($this->basket->meta()->tax),
             'totalDelivery' => $this->moneyFormatter->format($this->basket->meta()->delivery),
             'total' => $this->moneyFormatter->format($this->basket->meta()->total),
-        ];
+        ], $productInfo);
+    }
+
+    /**
+     * Get the product information for the given SKU
+     * @param string $sku
+     * @return array
+     */
+    private function getProductInfoForSku($sku)
+    {
+        $productInfo = [];
+        if ( ! is_null($sku)) {
+            $products = $this->basket->products();
+            $products = $products->getDictionary();
+            $productInfo = [
+                'itemTotalTax' => $this->moneyFormatter->format($products[$sku]->total_tax),
+                'itemTotal' => $this->moneyFormatter->format($products[$sku]->total),
+            ];
+            return $productInfo;
+        }
+        return $productInfo;
     }
 }
