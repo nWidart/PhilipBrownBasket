@@ -119,15 +119,17 @@ class BasketController extends Controller
     private function getProductInfoForSku($sku)
     {
         $productInfo = [];
-        if ( ! is_null($sku)) {
+        if (! is_null($sku)) {
             $products = $this->basket->products();
             $products = $products->getDictionary();
             $productInfo = [
                 'itemTotalTax' => $this->moneyFormatter->format($products[$sku]->total_tax),
                 'itemTotal' => $this->moneyFormatter->format($products[$sku]->total),
             ];
+
             return $productInfo;
         }
+
         return $productInfo;
     }
 }

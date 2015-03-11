@@ -34,7 +34,7 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach($products as $product): ?>
+            <?php foreach ($products as $product): ?>
             <tr data-sku="{{ $product->sku }}">
                 <td>
                     <div class="col-md-2">

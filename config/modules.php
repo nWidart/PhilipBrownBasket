@@ -4,7 +4,7 @@ return [
 
     'stubs' => [
         'enabled'   => false,
-        'path'      => base_path().'/vendor/pingpong/modules/src/Pingpong/Modules/Commands/stubs',
+        'path'      => base_path() . '/vendor/pingpong/modules/src/Pingpong/Modules/Commands/stubs',
         'files'     => [
             'start'         => 'start.php',
             'routes'        => 'Http/routes.php',

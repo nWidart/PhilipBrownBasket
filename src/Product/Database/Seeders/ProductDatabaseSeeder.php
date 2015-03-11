@@ -1,8 +1,8 @@
 <?php namespace Modules\Product\Database\Seeders;
 
 use Faker\Factory;
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Helper\ProgressBar;
 

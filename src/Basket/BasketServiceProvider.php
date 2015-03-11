@@ -25,7 +25,7 @@ class BasketServiceProvider extends ServiceProvider
 
     private function registerResourceNamespaces()
     {
-        $this->app['view']->addNamespace('basket', __DIR__.'/resources/views');
+        $this->app['view']->addNamespace('basket', __DIR__ . '/resources/views');
     }
 
     private function registerBindings()

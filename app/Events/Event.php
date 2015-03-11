@@ -1,7 +1,7 @@
 <?php namespace Acme\Events;
 
-abstract class Event {
+abstract class Event
+{
 
-	//
-
+    //
 }

@@ -14,6 +14,6 @@ class CoreServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->app['view']->addNamespace('core', __DIR__.'/resources/views');
+        $this->app['view']->addNamespace('core', __DIR__ . '/resources/views');
     }
 }

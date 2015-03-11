@@ -16,6 +16,6 @@ class ProductServiceProvider extends ServiceProvider
 
     private function registerResourceNamespaces()
     {
-        $this->app['view']->addNamespace('products', __DIR__.'/resources/views');
+        $this->app['view']->addNamespace('products', __DIR__ . '/resources/views');
     }
 }

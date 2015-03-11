@@ -21,7 +21,7 @@
     @include('core::partials.notifications')
 
     <div class="row">
-        <?php foreach($products as $product): ?>
+        <?php foreach ($products as $product): ?>
         <div class="col-3 col-sm-3 col-lg-3">
             <div class="thumbnail">
                 <div class="caption">
