@@ -36,7 +36,8 @@ class BasketController extends Controller
         $price = new Money((int) $request->get('price'), new Currency('EUR'));
         $sku = $request->get('sku');
 
-        $this->basket->addOrUpdate($sku, $request->get('name'), $price);
+       // $this->basket->addOrUpdate($sku, $request->get('name'), $price);
+        $this->basket->add($sku, $request->get('name'), $price);
 
         return Response::json($this->getResponseDataForBasket($sku));
     }

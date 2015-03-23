@@ -1,11 +1,12 @@
 <?php namespace Modules\Basket\Application\Basket;
 
 use Cartalyst\Cart\Cart;
+use Cartalyst\Conditions\Condition;
 use Closure;
 use Money\Currency;
 use Money\Money;
 use PhilipBrown\Basket\Collection;
-use PhilipBrown\Basket\Product;
+use Modules\Product\Domain\Entity\Product;
 use PhilipBrown\Basket\TaxRate;
 
 class CartalystCartBasket implements Basket
@@ -76,7 +77,11 @@ class CartalystCartBasket implements Basket
      */
     public function add($sku, $name, Money $price, Closure $action = null)
     {
-        // TODO: Implement add() method.
+        // Get the product from the database
+        if ( ! $product = Product::find($sku)) {
+            return redirect('/');
+        }
+        $this->addToCart($product);
     }
 
     /**
@@ -99,7 +104,6 @@ class CartalystCartBasket implements Basket
      */
     public function addOrUpdate($sku, $name, Money $price)
     {
-        // TODO: Implement addOrUpdate() method.
     }
 
     /**
@@ -118,7 +122,7 @@ class CartalystCartBasket implements Basket
      */
     public function current()
     {
-        // TODO: Implement current() method.
+        return $this->basket->items();
     }
 
     /**
@@ -128,5 +132,68 @@ class CartalystCartBasket implements Basket
     public function meta()
     {
         // TODO: Implement meta() method.
+    }
+
+    /**
+     * Add product to cart.
+     * @param Product $product
+     * @return \Cartalyst\Cart\Collections\ItemCollection
+     */
+    protected function addToCart(Product $product)
+    {
+        // Set the global conditions order
+        $this->basket->setConditionsOrder([
+            'discount',
+            'other',
+            'tax',
+            'shipping',
+            'coupon',
+        ]);
+        // Set the items conditions order
+        $this->basket->setItemsConditionsOrder([
+            'discount',
+            'other',
+            'tax',
+            'shipping',
+        ]);
+        // Item conditions
+        $condition1 = $this->createCondition('VAT (17.5%)', 'tax', 'subtotal', ['value' => '17.50%']);
+        $condition2 = $this->createCondition('VAT (23%)', 'tax', 'subtotal', ['value' => '23%']);
+        $condition3 = $this->createCondition('Discount (7.5%)', 'discount', 'subtotal', ['value' => '-7.5%']);
+        $condition4 = $this->createCondition('Item Based Shipping', 'shipping', 'subtotal', ['value' => '20.00']);
+        // Add the item to the basket
+        $item = $this->basket->add([
+            'id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => 1,
+            'conditions' => [$condition1, $condition2, $condition3, $condition4],
+        ]);
+        // Global conditions
+        $condition1 = $this->createCondition('Global Tax (12.5%)', 'tax', 'subtotal', ['value' => '12.50%']);
+        $condition2 = $this->createCondition('Global discount (5%)', 'tax', 'subtotal', ['value' => '-5%']);
+        $condition3 = $this->createCondition('Global Shipping', 'shipping', 'subtotal', ['value' => '20.00%']);
+        // Set the global conditions
+        $this->basket->condition([$condition1, $condition2, $condition3]);
+
+        return $item;
+    }
+
+    /**
+     * Create a new condition.
+     * @param  string $name
+     * @param  string $type
+     * @param  string $target
+     * @param  array $actions
+     * @param  array $rules
+     * @return \Cartalyst\Conditions\Condition
+     */
+    protected function createCondition($name, $type, $target, $actions = [], $rules = [])
+    {
+        $condition = new Condition(compact('name', 'type', 'target'));
+        $condition->setActions($actions);
+        $condition->setRules($rules);
+
+        return $condition;
     }
 }
