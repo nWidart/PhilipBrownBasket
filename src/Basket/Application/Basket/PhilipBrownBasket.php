@@ -1,6 +1,7 @@
 <?php namespace Modules\Basket\Application\Basket;
 
 use Closure;
+use Modules\Basket\Application\Basket\MetaData\BasketDiscountMetaData;
 use Modules\Basket\Domain\Repository\BasketRepository;
 use Money\Currency;
 use Money\Money;
@@ -191,9 +192,18 @@ class PhilipBrownBasket implements Basket
             new TaxableMetaData,
             new TaxMetaData($reconciler),
             new TotalMetaData($reconciler),
-            new ValueMetaData($reconciler)
+            new ValueMetaData($reconciler),
         ];
 
         return new Processor($reconciler, $meta);
+    }
+
+    /**
+     * Add a global discount on the basket
+     * @param Money $money
+     */
+    public function addDiscount(Money $money)
+    {
+        $this->basket->addDiscount($money);
     }
 }

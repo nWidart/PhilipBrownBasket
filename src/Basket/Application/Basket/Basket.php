@@ -93,4 +93,10 @@ interface Basket
      * @return array
      */
     public function meta();
+
+    /**
+     * Add a global discount on the basket
+     * @param Money $money
+     */
+    public function addDiscount(Money $money);
 }
