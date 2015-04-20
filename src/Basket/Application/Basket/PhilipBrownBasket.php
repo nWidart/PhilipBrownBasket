@@ -1,7 +1,7 @@
 <?php namespace Modules\Basket\Application\Basket;
 
 use Closure;
-use Modules\Basket\Application\Basket\MetaData\BasketDiscountMetaData;
+//use Modules\Basket\Application\Basket\MetaData\BasketDiscountMetaData;
 use Modules\Basket\Domain\Repository\BasketRepository;
 use Money\Currency;
 use Money\Money;
